@@ -19,6 +19,7 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	compileOnly('org.projectlombok:lombok:1.18.10')
+	annotationProcessor('org.projectlombok:lombok')
 }
 
 test {
