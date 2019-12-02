@@ -18,7 +18,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	compileOnly('org.projectlombok:lombok:1.18.10')
+	compileOnly('org.projectlombok:lombok')
 	annotationProcessor('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.projectlombok:lombok')
@@ -27,7 +27,6 @@ dependencies {
 	//compile('org.postgresql:postgresql')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
