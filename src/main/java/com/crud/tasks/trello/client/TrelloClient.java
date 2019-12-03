@@ -13,6 +13,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class TrelloClient {
@@ -36,14 +37,8 @@ public class TrelloClient {
         URI url = getUrl();
 
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-        if (boardsResponse != null) {
-            for (int i = 0; i < boardsResponse.length; i++) {
-                if (boardsResponse[i].getName() != null && boardsResponse[i].getId() != null && boardsResponse[i].getName().contains("Kodilla"))
-                    ;
-                return Arrays.asList(boardsResponse);
-            }
-        }
-        return new ArrayList<>();
+
+        return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
     }
 
     private URI getUrl() {
@@ -62,8 +57,10 @@ public class TrelloClient {
                 .queryParam("name", trelloCardDto.getName())
                 .queryParam("desc", trelloCardDto.getDescription())
                 .queryParam("pos", trelloCardDto.getPos())
-                .queryParam("idList", trelloCardDto.getListId()).build().encode().toUri();
+                .queryParam("idList", trelloCardDto.getListId())
+                .queryParam("badges", "all").build().encode().toUri();
 
         return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
+
     }
 }
