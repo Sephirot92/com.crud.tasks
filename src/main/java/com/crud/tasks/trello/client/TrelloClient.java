@@ -60,6 +60,7 @@ public class TrelloClient {
                 .queryParam("idList", trelloCardDto.getListId())
                 .queryParam("badges", "all").build().encode().toUri();
 
+
         return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
 
     }
