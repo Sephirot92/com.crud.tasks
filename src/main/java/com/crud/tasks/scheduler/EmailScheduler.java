@@ -35,16 +35,7 @@ public class EmailScheduler {
                 informationAboutTasksNumber(size))
         );
     }
-
     private String informationAboutTasksNumber(long size) {
-        return isNumberOfTasks(size) ? message(size) + TASK : message(size) + TASKS;
-    }
-
-    private String message(long size) {
-        return "Currently in database you got" + size;
-    }
-
-    private boolean isNumberOfTasks(long size) {
-        return size == 1 ? true : false;
+        return "Currently in database you got" + size + ((size == 1) ? " task" : " tasks");
     }
 }
