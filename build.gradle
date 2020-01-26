@@ -25,6 +25,7 @@ dependencies {
 	compile('mysql:mysql-connector-java')
 	//compile('org.postgresql:postgresql')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
+	compile('com.google.code.gson:gson:2.8.2')
 
 
 	annotationProcessor('org.projectlombok:lombok')

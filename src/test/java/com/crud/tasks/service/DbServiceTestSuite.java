@@ -34,7 +34,11 @@ public class DbServiceTestSuite {
         taskList.add(taskOne);
         taskList.add(taskTwo);
 
+        dbService.saveTask(taskOne);
+        dbService.saveTask(taskTwo);
         //When
+        when(taskRepository.findAll()).thenReturn(taskList);
+
         int numberOfTasks = dbService.getAllTasks().size();
 
         //Then

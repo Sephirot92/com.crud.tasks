@@ -13,6 +13,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
 public class TrelloServiceTest {
 
@@ -34,6 +36,7 @@ public class TrelloServiceTest {
         TrelloBoardDto trelloBoard = new TrelloBoardDto("id", "name", new ArrayList<>());
         List<TrelloBoardDto> someTrelloList = new ArrayList<>();
         someTrelloList.add(trelloBoard);
+        when(trelloClient.getTrelloBoards()).thenReturn(someTrelloList);
         //When
         int numberOfBoards = trelloService.fetchTrelloBoards().size();
 
