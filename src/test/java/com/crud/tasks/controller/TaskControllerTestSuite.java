@@ -15,7 +15,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TaskControllerTestSuite {
@@ -41,7 +42,6 @@ public class TaskControllerTestSuite {
         //When
         TaskDto taskDto = taskMapper.mapToTaskDto(task);
         tasksDtosList.add(taskDto);
-        when(taskController.getTasks()).thenReturn(tasksDtosList);
         //Then
         Assert.assertNotNull(taskController.getTasks().size());
     }

@@ -35,8 +35,6 @@ public class DbServiceTestSuite {
         taskList.add(taskTwo);
 
         //When
-        when(dbService.getAllTasks()).thenReturn(taskList);
-
         int numberOfTasks = dbService.getAllTasks().size();
 
         //Then

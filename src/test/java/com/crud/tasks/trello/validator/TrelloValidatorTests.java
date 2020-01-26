@@ -1,5 +1,8 @@
 package com.crud.tasks.trello.validator;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import com.crud.tasks.domain.TrelloBoard;
 import com.crud.tasks.domain.TrelloCard;
 import org.junit.Assert;
@@ -7,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +22,20 @@ public class TrelloValidatorTests {
     TrelloValidator trelloValidator;
 
     @Test
-    public void validateCards() {
+    public void validateCards() throws Exception {
         //Given
+        Logger trelloValidatorLogger = (Logger) LoggerFactory.getLogger(TrelloValidator.class);
         TrelloCard trelloCard = new TrelloCard("name", "desc", "pos", "id");
+
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        listAppender.start();
+        trelloValidatorLogger.addAppender(listAppender);
 
         //When
         trelloValidator.validateCard(trelloCard);
         //Then
-
+        List<ILoggingEvent> logList = listAppender.list;
+        Assert.assertEquals("Application is running perfect.", logList.get(0).getMessage());
     }
 
     @Test
