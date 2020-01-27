@@ -22,7 +22,7 @@ public class TrelloValidatorTests {
     TrelloValidator trelloValidator;
 
     @Test
-    public void validateCards() throws Exception {
+    public void validateCards() {
         //Given
         Logger trelloValidatorLogger = (Logger) LoggerFactory.getLogger(TrelloValidator.class);
         TrelloCard trelloCard = new TrelloCard("name", "desc", "pos", "id");
@@ -36,6 +36,7 @@ public class TrelloValidatorTests {
         //Then
         List<ILoggingEvent> logList = listAppender.list;
         Assert.assertEquals("Application is running perfect.", logList.get(0).getMessage());
+        listAppender.stop();
     }
 
     @Test
