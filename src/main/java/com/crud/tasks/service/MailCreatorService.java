@@ -23,11 +23,14 @@ public class MailCreatorService {
         context.setVariable("tasks_url", "http://localhost:8888/tasks_frontend/");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("preview_message", "This message was created with Thymeleaf support!");
         context.setVariable("goodbye_message", "Have a great day!");
         context.setVariable("company_name", adminConfig.getCompanyName());
         context.setVariable("company_goal", adminConfig.getCompanyGoal());
         context.setVariable("company_email", adminConfig.getCompanyEmail());
         context.setVariable("company_phone", adminConfig.getCompanyPhone());
+        context.setVariable("show_button", false);
+        context.setVariable("is_friend", true);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
