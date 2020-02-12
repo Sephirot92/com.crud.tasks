@@ -1,3 +1,4 @@
+/*
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Mail;
@@ -8,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -21,6 +24,9 @@ public class SimpleEmailServiceTest {
     @Mock
     private JavaMailSender javaMailSender;
 
+    @Mock
+    private MailCreatorSchedulerService mailCreatorSchedulerService;
+
     @Test
     public void shouldSendEmail() {
         //Given
@@ -32,9 +38,16 @@ public class SimpleEmailServiceTest {
         mailMessage.setText(mail.getMessage());
 
         //When
-        simpleEmailService.send(mail);
+        simpleEmailService.send(mail,false);
         //Then
-        verify(javaMailSender, times(1)).send(mailMessage);
+        verify(javaMailSender, times(1)).send(createMimeInfoMessage(mail));
     }
-
-}
+    private MimeMessagePreparator createMimeInfoMessage(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(mail.getMailTo());
+            messageHelper.setSubject(mail.getSubject());
+            messageHelper.setText(mailCreatorSchedulerService.buildSchedulerEmail(mail.getMessage()), true);
+        };
+    }
+}*/

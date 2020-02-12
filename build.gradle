@@ -35,7 +35,7 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-
+	testCompile group: 'org.easymock', name: 'easymock', version: '4.2'
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 
